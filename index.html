@@ -17,8 +17,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:
-    radial-gradient(circle at top,#222 0%,#111 40%,#000 100%);
+    background: radial-gradient(circle at center, #2c2c2c 0%, #151515 60%, #050505 100%);
     font-family:'Pretendard',sans-serif;
     color:white;
     overflow:hidden;
@@ -31,10 +30,12 @@ body{
     text-align:center;
 }
 
+/* 1. 로고 텍스트 두께 변경 (300 -> 600) */
 .logo{
     font-size:34px;
-    font-weight:300;
+    font-weight:600;
     letter-spacing:6px;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
 .subtitle{
@@ -44,6 +45,7 @@ body{
     font-size:12px;
 }
 
+/* 화살표에 그림자를 주어 입체감 부여 */
 .pointer{
     width:0;
     height:0;
@@ -53,6 +55,7 @@ body{
     border-top:35px solid #d4af37;
     z-index:10;
     position:relative;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.6));
 }
 
 .wheel-wrap{
@@ -61,26 +64,30 @@ body{
     justify-content:center;
 }
 
+/* 룰렛 테두리 입체감 업그레이드 */
 #wheel{
     width:320px;
     height:320px;
     border-radius:50%;
-    border:8px solid #d4af37;
+    border:9px solid #d4af37;
     box-shadow:
-    0 0 20px rgba(212,175,55,.4),
-    inset 0 0 20px rgba(255,255,255,.05);
+        0 12px 28px rgba(0, 0, 0, 0.7), 
+        0 0 25px rgba(212,175,55,.3),
+        inset 0 4px 12px rgba(255,255,255,0.15),
+        inset 0 -4px 12px rgba(0,0,0,0.5);
 
     background:
     conic-gradient(
-    #111 0deg 90deg,
-    #2a2a2a 90deg 180deg,
-    #111 180deg 270deg,
-    #2a2a2a 270deg 360deg);
+    #141414 0deg 90deg,
+    #262626 90deg 180deg,
+    #141414 180deg 270deg,
+    #262626 270deg 360deg);
 
-    transition:transform 5s cubic-bezier(.17,.67,.12,.99);
+    transition:transform 5s cubic-bezier(.15,.75,.12,.99);
     position:relative;
 }
 
+/* 줄바꿈 시 자연스럽도록 line-height 설정 추가 */
 .label{
     position:absolute;
     width:120px;
@@ -91,14 +98,18 @@ body{
     font-size:15px;
     font-weight:600;
     color:#fff;
+    line-height:1.4;
     pointer-events:none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
+/* 중앙 버튼 그라데이션 및 입체감 강화 */
 .center{
     position:absolute;
-    width:80px;
-    height:80px;
-    background:#d4af37;
+    width:84px;
+    height:84px;
+    background: linear-gradient(135deg, #f3d066 0%, #d4af37 50%, #aa8414 100%);
+    border: 3px solid #111;
     border-radius:50%;
     top:50%;
     left:50%;
@@ -107,31 +118,48 @@ body{
     justify-content:center;
     align-items:center;
     color:#000;
-    font-weight:700;
+    font-weight:800;
     z-index:2;
-    box-shadow:0 0 20px rgba(212,175,55,.5);
+    box-shadow: 
+        0 6px 12px rgba(0,0,0,0.5),
+        inset 0 2px 4px rgba(255,255,255,0.4);
 }
 
+/* 하단 버튼 입체감 및 반응형 효과 추가 */
 button{
     margin-top:35px;
     width:100%;
     padding:18px;
     border:none;
     border-radius:999px;
-    background:#d4af37;
+    background: linear-gradient(to bottom, #ebd077 0%, #d4af37 100%);
     color:black;
     font-size:18px;
     font-weight:700;
     letter-spacing:1px;
     cursor:pointer;
+    box-shadow: 
+        0 5px 15px rgba(0,0,0,0.4),
+        inset 0 2px 3px rgba(255,255,255,0.4);
+    transition: all 0.2s ease;
+}
+
+button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 
+        0 2px 5px rgba(0,0,0,0.4),
+        inset 0 1px 2px rgba(0,0,0,0.3);
 }
 
 button:disabled{
     opacity:.5;
+    background: #d4af37;
+    box-shadow: none;
+    cursor: not-allowed;
 }
 
 .notice{
-    margin-top:15px;
+    margin-top:18px;
     color:#999;
     font-size:12px;
     line-height:1.6;
@@ -145,16 +173,18 @@ button:disabled{
     justify-content:center;
     align-items:center;
     padding:20px;
+    z-index: 100;
 }
 
 .modal-content{
     width:100%;
     max-width:350px;
-    background:#111;
-    border:1px solid #d4af37;
+    background:#161616;
+    border:2px solid #d4af37;
     border-radius:24px;
     padding:35px 25px;
     text-align:center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
 }
 
 .modal-title{
@@ -167,6 +197,7 @@ button:disabled{
     margin-top:15px;
     font-size:28px;
     font-weight:700;
+    color: #fff;
 }
 
 .close{
@@ -192,11 +223,9 @@ button:disabled{
     <div class="pointer"></div>
 
     <div class="wheel-wrap">
-
         <div id="wheel">
             <div class="center">JUNO</div>
         </div>
-
     </div>
 
     <button id="spinBtn">룰렛 돌리기</button>
@@ -222,7 +251,7 @@ button:disabled{
 <script>
 
 const prizes = [
-    "다운펌<br>업그레이드",
+    "다운펌 업그레이드",
     "2천원 할인권",
     "3천원 할인권",
     "아로마 오일"
@@ -230,65 +259,50 @@ const prizes = [
 
 const wheel = document.getElementById("wheel");
 
+/* 다운펌 업그레이드 부분에 <br> 태그 추가 */
 const positions = [
-    {text:"다운펌 업그레이드", rotate:45},
+    {text:"다운펌<br>업그레이드", rotate:45},
     {text:"2천원 할인권", rotate:135},
     {text:"3천원 할인권", rotate:225},
     {text:"아로마 오일", rotate:315}
 ];
 
 positions.forEach(item=>{
-
     const label = document.createElement("div");
-
     label.className="label";
-
     label.innerHTML=item.text;
 
     label.style.transform=
     `translate(-50%,-50%) rotate(${item.rotate}deg)
-     translateY(-115px)
+     translateY(-110px)
      rotate(-${item.rotate}deg)`;
 
     label.style.left="50%";
     label.style.top="50%";
 
     wheel.appendChild(label);
-
 });
 
 let currentRotation=0;
 let spinning=false;
 
 document.getElementById("spinBtn").addEventListener("click",()=>{
-
     if(spinning) return;
-
     spinning=true;
-
     document.getElementById("spinBtn").disabled=true;
 
     const winnerIndex=Math.floor(Math.random()*prizes.length);
-
     const targetAngle=(winnerIndex*90)+45;
 
     currentRotation += 3600 + (360-targetAngle);
-
     wheel.style.transform=`rotate(${currentRotation}deg)`;
 
     setTimeout(()=>{
-
-        document.getElementById("resultText").textContent =
-        prizes[winnerIndex];
-
+        document.getElementById("resultText").textContent = prizes[winnerIndex];
         document.getElementById("modal").style.display="flex";
-
         spinning=false;
-
         document.getElementById("spinBtn").disabled=false;
-
     },5000);
-
 });
 
 function closeModal(){
